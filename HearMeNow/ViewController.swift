@@ -36,7 +36,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
                 else {
                     print("Unable to record")
                 }
-            } }
+            }
+        }
     }
     
     @IBAction func playPressed(_ sender: Any) {
@@ -48,8 +49,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         else if (hasRecording == true)
         {
             let url = NSURL(fileURLWithPath: soundPath!)
-            //let err = error as NSError
-            //let error = NSError()
+            
             let error: NSError? = nil
             
             let soundPlayer = try! AVAudioPlayer(contentsOf: url as URL)
@@ -89,24 +89,13 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         
         let settings = [AVFormatIDKey : Int(kAudioFormatAppleLossless), AVEncoderAudioQualityKey : AVAudioQuality.max.rawValue, AVEncoderBitRateKey : 320000, AVNumberOfChannelsKey: 2, AVSampleRateKey: 44100.0 ] as [String : Any]
         
-        //let audioSession = AVAudioSession.sharedInstance()
-        
-        
         do{
             try soundRecorder = AVAudioRecorder(url:soundFilename, settings: settings)
             soundRecorder.prepareToRecord()
         } catch let error as NSError {
             print("record error:\(error.localizedDescription)")
         }
-        
-//        if let err = error
-//        {
-//            print("Error initializing the recorder: \(err.localizedDescription)")
-//        } else {
-//            soundRecorder.delegate = self
-           
-//        }
-      
+
     }
 
 }
